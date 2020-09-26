@@ -14,7 +14,7 @@ function quick(arr, start, end) {
     }
 
     while (arr[pivot] <= arr[right] && start < right) {
-      right--;
+      right++;
     }
 
     if (left > right) {
