@@ -1,36 +1,36 @@
-function quick(arr, start, end) {
+const quick = (arr, start, end) => {
   if (start >= end) {
     return;
   }
 
-  const pivot = start;
-  let left = start + 1;
+  let pivot = start;
+  let left = pivot + 1;
   let right = end;
-  let temp;
 
   while (left < right) {
     while (arr[pivot] >= arr[left]) {
       left++;
     }
-
     while (arr[pivot] <= arr[right] && start < right) {
-      right++;
+      right--;
     }
 
     if (left > right) {
-      temp = arr[pivot];
-      arr[pivot] = arr[right];
-      arr[right] = temp;
+      swap(arr, pivot, right);
     } else {
-      temp = arr[left];
-      arr[left] = arr[right];
-      arr[right] = temp;
+      swap(arr, left, right);
     }
   }
 
   quick(arr, start, right - 1);
   quick(arr, right + 1, end);
-}
+};
+const swap = (arr, i, j) => {
+  const temp = arr[i];
+  arr[i] = arr[j];
+  arr[j] = temp;
+};
+
 /**
  * 여러가지방법이 있지만 제일 첫번재것을 피봇으로 선택
  * O(N * logN)
