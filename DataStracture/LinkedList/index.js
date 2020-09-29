@@ -1,73 +1,111 @@
-class LinkedList {
-  head = null;
-  count = 0;
+class Node {
+  constructor(data) {
+    this.data = data;
+    this.next = null;
+  }
+}
 
+class LinkedList {
   constructor() {
     this.head = null;
-    this.count = 0;
+    this.length = 0;
   }
 
-  add(data) {
-    if (this.head === null) {
+  append(data) {
+    if (!this.head) {
       this.head = new Node(data);
     } else {
-      let currentNode = this.head;
-
-      while (currentNode.next) {
-        currentNode = currentNode.next;
+      let temp = this.head;
+      while (temp.next) {
+        temp = temp.next;
       }
-
-      currentNode.next = new Node(data);
+      temp.next = new Node(data);
+    }
+    this.length++;
+  }
+  appendAt(data, pos) {
+    if (!data) {
+      return;
     }
 
-    this.count++;
+    if (pos < 0 || pos >= this.length) {
+      return;
+    }
+
+    if (pos === 0) {
+      const temp = this.head;
+      this.head = new Node(data);
+      this.head.next = temp;
+    } else {
+      let beforNode = this.head;
+      let tempNode = this.head.next;
+      let temp = 1;
+      while (temp < pos) {
+        beforNode = tempNode;
+        tempNode = tempNode.next;
+        temp++;
+      }
+
+      beforNode.next = new Node(data);
+      beforNode.next.next = tempNode;
+    }
+    this.length++;
+  }
+  removeAt(pos) {
+    if (pos < 0 || pos >= this.length) {
+      return;
+    }
+
+    let removedData;
+    if (pos === 0) {
+      removedData = this.head;
+      this.head = this.head.next;
+    } else {
+      let beforNode = this.head;
+      let tempNode = this.head.next;
+      let temp = 1;
+      while (temp < pos) {
+        beforNode = tempNode;
+        tempNode = tempNode.next;
+        temp++;
+      }
+
+      removedData = tempNode;
+      beforNode.next = tempNode.next;
+    }
+
+    return removedData;
   }
 
   print() {
-    let currentNode = this.head;
-    while (currentNode) {
-      console.log(currentNode.data);
-      currentNode = currentNode.next;
+    console.log("----------------------------");
+    let temp = this.head;
+    while (temp) {
+      console.log(temp);
+      temp = temp.next;
     }
-  }
-
-  addAt(data, at) {
-    let currentNode = this.head;
-    if (at == 0) {
-      this.head = new Node(data);
-      this.head.next = currentNode;
-    } else {
-      //
-      let count = 1;
-      while (at > count++) {
-        currentNode = currentNode.next;
-      }
-      const tempNode = currentNode.next;
-      currentNode.next = new Node(data);
-      currentNode.next.next = tempNode;
-    }
-  }
-
-  // add
-  // addAt
-  // removeAt
-}
-class Node {
-  data = null;
-  next = null;
-
-  constructor(data) {
-    this.data = data;
   }
 }
 
-const linkedList = new LinkedList();
-linkedList.add("1");
-linkedList.add("2");
-linkedList.add("3");
-linkedList.add("4");
-linkedList.add("5");
-linkedList.addAt("100", 1);
-linkedList.print();
+const list = new LinkedList();
+list.append("a");
+list.append("123");
+list.append({ a: 12 });
+list.append(888888);
+list.append({ a: 15234 });
+list.append(444);
+console.log(list.length);
 
-window.linkedList = linkedList;
+list.print();
+list.removeAt(2);
+list.print();
+
+list.removeAt(1);
+list.print();
+
+list.removeAt(0);
+list.print();
+debugger;
+
+list.appendAt("지금이순간", 1);
+list.print();
