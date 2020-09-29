@@ -1,16 +1,15 @@
 function start(arr) {
-  const len = arr.length;
-
-  for (let i = 1; i < len; i++) {
-    let j = i;
-    while (arr[j - 1] > arr[j]) {
-      const s = arr[j];
-      arr[j] = arr[j - 1];
-      arr[j - 1] = s;
-      j--;
-      console.log(arr);
+  const length = arr.length;
+  for (let i = 0; i < length - 1; i++) {
+    let min = i;
+    for (let j = i + 1; j < length; j++) {
+      if (arr[min] > arr[j]) {
+        min = j;
+      }
     }
-    console.log(i, "끝");
+    const temp = arr[min];
+    arr[min] = arr[i];
+    arr[i] = temp;
   }
 }
 
@@ -23,6 +22,8 @@ function start(arr) {
  * 선택정렬보다 더 느리다.
  * 정렬알고리즘중에 제일 느리다.
  */
-start([4, 7, 2, 3, 1, 5, 1, 2, 9, 8]);
+const arr = [4, 7, 2, 3, 1, 5, 1, 2, 9, 8];
+start(arr);
+console.log(arr);
 const a = [...Array(10).keys(), 1].reverse();
 start(a);
