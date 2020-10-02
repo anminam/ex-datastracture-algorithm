@@ -21,4 +21,6 @@ function start(arr) {
  * 선택정렬보다 더 느리다.
  * 정렬알고리즘중에 제일 느리다.
  */
-start([4, 7, 2, 3, 1, 5, 1, 2, 9, 8]);
+const data = [4, 7, 2, 3, 1, 5, 1, 2, 9, 8, 8, 8];
+start(data);
+console.log(data);
