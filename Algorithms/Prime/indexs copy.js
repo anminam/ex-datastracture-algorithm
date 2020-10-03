@@ -38,6 +38,7 @@ const findPrimeNumber = (number) => {
 var numbers1 = "17";
 var a1 = solution(numbers1);
 console.log(a1);
+a1.split;
 
 // var numbers2 = "011";
 // var a2 = solution(numbers2);
