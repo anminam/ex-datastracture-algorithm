@@ -4,7 +4,7 @@ const quick = (arr, start, end) => {
   }
 
   const pivot = start;
-  let left = start + 1;
+  let left = pivot + 1;
   let right = end;
 
   while (left < right) {
