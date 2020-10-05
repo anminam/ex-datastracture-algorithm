@@ -23,6 +23,18 @@ export class LinkedList {
     }
   }
 
+  contains(data) {
+    let node = this.root;
+    if (node === null) return false;
+    while (node.next) {
+      if (node.data === data) {
+        return true;
+      }
+      node = node.next;
+    }
+    return false;
+  }
+
   print() {
     let node = this.root;
     if (!node) {
@@ -35,11 +47,3 @@ export class LinkedList {
     }
   }
 }
-
-const list = new LinkedList();
-list.add("1");
-list.add("2");
-list.add("3");
-list.add("4");
-list.add("5");
-list.print();
