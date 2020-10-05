@@ -1,11 +1,12 @@
 const start = (arr) => {
   const length = arr.length;
+
   for (let i = Math.floor(length / 2 - 1); i >= 0; i--) {
     heapify(arr, length, i);
   }
 
   for (let i = length - 1; i >= 0; i--) {
-    swap(arr, 0, i);
+    swap(arr, i, 0);
     heapify(arr, i, 0);
   }
 };

@@ -1,14 +1,18 @@
 const start = (arr) => {
-  const length = arr.length;
-  for (let i = 0; i < length - 1; i++) {
-    for (let j = 0; j < length - 1 - i; j++) {
+  const len = arr.length;
+
+  for (let i = 0; i < len - 1; i++) {
+    for (let j = 0; j < len - 1 - i; j++) {
       if (arr[j] > arr[j + 1]) {
-        const temp = arr[j];
-        arr[j] = arr[j + 1];
-        arr[j + 1] = temp;
+        swap(arr, j, j + 1);
       }
     }
   }
+};
+const swap = (arr, i, j) => {
+  const temp = arr[i];
+  arr[i] = arr[j];
+  arr[j] = temp;
 };
 
 const data = [4, 7, 2, 3, 1, 5, 1, 2, 9, 8, 8, 8];
