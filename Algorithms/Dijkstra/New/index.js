@@ -2,31 +2,38 @@ function solution(N, road, K) {
   const adjacent = new Array(N);
   for (let i = 0; i < N; i++) {
     adjacent[i] = new Array(N).fill(0);
-    adjacent[i][i] = 0;
   }
 
-  for (let a of road) {
-    const value = adjacent[a[0] - 1][a[1] - 1];
-    if (value && value < a[2]) continue;
-
-    adjacent[a[0] - 1][a[1] - 1] = a[2];
-    adjacent[a[1] - 1][a[0] - 1] = a[2];
+  for (let i = 0; i < road.length; i++) {
+    const x = road[i][0] - 1;
+    const y = road[i][1] - 1;
+    const value = road[i][2];
+    if (adjacent[x][y] && adjacent[x][y] < value) {
+      continue;
+    }
+    adjacent[x][y] = value;
+    adjacent[y][x] = value;
   }
 
   const d = new Array(N).fill(Infinity);
   d[0] = 0;
+
   const queue = [];
   queue.push(0);
+
   while (queue.length) {
-    const curr = queue.shift();
+    const index = queue.shift();
     for (let i = 0; i < N; i++) {
-      if (!adjacent[curr][i]) continue;
-      if (d[i] > d[curr] + adjacent[curr][i]) {
-        d[i] = d[curr] + adjacent[curr][i];
+      const newValue = adjacent[index][i];
+      if (!newValue) continue;
+      if (d[i] > newValue + d[index]) {
         queue.push(i);
+        d[i] = newValue + d[index];
       }
     }
   }
+
+  return d.filter((i) => i <= K).length;
 }
 
 const road = [

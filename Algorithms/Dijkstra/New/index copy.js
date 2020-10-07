@@ -1,34 +1,39 @@
 function solution(N, road, K) {
-  debugger;
-  const distance = new Array(N + 1).fill(Infinity);
-  distance[1] = 0;
-
-  const adjacent = [new Array(N + 1).fill(0)];
+  const adjacent = new Array(N);
   for (let i = 0; i < N; i++) {
-    adjacent.push(new Array(N + 1).fill(0));
+    adjacent[i] = new Array(N).fill(0);
   }
 
-  for (const r of road) {
-    if (adjacent[r[0]][r[1]] && adjacent[r[0]][r[1]] < r[2]) continue;
-    adjacent[r[0]][r[1]] = r[2];
-    adjacent[r[1]][r[0]] = r[2];
+  for (let i = 0; i < road.length; i++) {
+    const x = road[i][0] - 1;
+    const y = road[i][1] - 1;
+    const value = road[i][2];
+    if (adjacent[x][y] && adjacent[x][y] < value) {
+      continue;
+    }
+    adjacent[x][y] = value;
+    adjacent[y][x] = value;
   }
 
-  const queue = [1];
+  const d = new Array(N).fill(Infinity);
+  d[0] = 0;
+
+  const queue = [];
+  queue.push(0);
+
   while (queue.length) {
-    const cur = queue.shift();
-    for (const [i, v] of adjacent[cur].entries()) {
-      if (!v) continue;
-      let d = v + distance[cur];
-      debugger;
-      if (d < distance[i]) {
+    const index = queue.shift();
+    for (let i = 0; i < N; i++) {
+      const newValue = adjacent[index][i];
+      if (!newValue) continue;
+      if (d[i] > newValue + d[index]) {
         queue.push(i);
-        distance[i] = d;
+        d[i] = newValue + d[index];
       }
     }
   }
 
-  return distance.filter((v) => v <= K).length;
+  return d.filter((i) => i <= K).length;
 }
 
 const road = [
