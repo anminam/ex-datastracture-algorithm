@@ -1,12 +1,14 @@
 function solution(n) {
   let answer = "";
+  const NUM_LIST = [4, 1, 2];
+  const numLength = NUM_LIST.length;
   while (n > 0) {
     console.log("s", n);
-    let remain = n % 3;
-    n = Math.floor(n / 3);
+    let remain = n % numLength;
+    n = Math.floor(n / numLength);
     if (remain === 0) {
       n--;
-      remain = 4;
+      remain = NUM_LIST[0];
     }
     console.log("e", n);
     answer = remain + answer;
