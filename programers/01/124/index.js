@@ -12,10 +12,29 @@ function solution(n) {
     }
     console.log("e", n);
     answer = remain + answer;
+
+    printMan.print(n, answer);
   }
-  console.log(answer);
   return answer;
 }
+
+class PrintMan {
+  constructor() {
+    this.main = document.querySelector(".main");
+    this.ul = document.createElement("ul");
+    this.main.append(this.ul);
+  }
+
+  print(a10, a3, a124) {
+    const li = document.createElement("li");
+
+    li.innerHTML += `<div>${a10}</div>`;
+    li.innerHTML += `<div>${a3}</div>`;
+    li.innerHTML += `<div>${a124}</div>`;
+    this.ul.append(li);
+  }
+}
+const printMan = new PrintMan();
 
 let a = solution(10);
 // 1 1 1
