@@ -2,7 +2,13 @@ function solution(n, a, b) {
   var answer = 3;
   let count = 0;
   while (a !== 1 && b !== 2) {
-    if (count === 1000) {
+    if (a !== 1) {
+      a = a / 2 - 1;
+    }
+    if (b !== 2) {
+      b = b / 2 - 1;
+    }
+    if (count++ === 1000) {
       break;
     }
   }
