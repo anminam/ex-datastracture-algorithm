@@ -22,7 +22,7 @@ function primeNumber(numbers) {
 //       primeNumbers.push(Number(frontNumber + number));
 //     }
 
-//     var nextNumberList = [...numberList];
+//     var nextNumberList = [...numberList]; 
 //     nextNumberList.splice(index, 1);
 
 //     var result = findPrimeNumber(nextNumberList, frontNumber + number);

@@ -1,19 +1,6 @@
 function solution(s) {
-  var answer = "";
-  let arr = s.split(" ").map((v) => Number(v));
-  let min = Infinity;
-  let max = -Infinity;
-  arr.forEach((v) => {
-    if (min > v) {
-      min = v;
-    }
-    if (max < v) {
-      max = v;
-    }
-  });
-  answer = `${min} ${max}`;
-  return answer;
+  var arr = s.split(" ").map(i=>Number(i)).sort((a,b) => a-b);
+  return `${arr[0]} ${arr[arr.length-1]}`;
 }
-
 let a = solution("-1 -2 -3 -4");
 console.log(a);
