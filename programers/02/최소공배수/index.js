@@ -1,27 +1,26 @@
-
-function solution(arr) {
-  var answer = 0;
-  var answer = arr.shift();
+function solution(arr){
+  var start = arr.pop();
+  var result = 0;
+  
   while(arr.length) {
-    const newValue = arr.shift();
-    answer = lcm(answer, newValue);
+    var b = arr.pop();
+    result = lgm(start, b);
+    start = result;
   }
-
-  return answer;
+  return result;
 }
-
-function lcm(a,b) {
-  return a* b / gcd(a,b);
-
+function lgm(a,b) {
+  return a * b / gcd(a,b);
 }
-function gcd(a,b) {
+function gcd (a,b) {
   while(b!==0) {
-    const r= a % b;
+    var r = a%b;
     a = b;
     b = r;
   }
+
   return a;
 }
-var a = gcd(122,12);
-console.log(a);
-solution([2,6,8,14]);
+
+var a = solution([2,6,8,14]);
+debugger;
